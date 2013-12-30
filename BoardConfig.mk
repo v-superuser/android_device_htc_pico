@@ -61,7 +61,7 @@ TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := neon
 
 # Optimisations used by Qualcomm
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+#TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Target information

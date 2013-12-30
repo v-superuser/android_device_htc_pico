@@ -16,4 +16,4 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/full_pico.mk \
-    $(LOCAL_DIR)/omni_pico.mk
+    $(LOCAL_DIR)/ev.mk

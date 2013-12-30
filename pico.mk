@@ -15,13 +15,10 @@
 # proprietary side of the device
 # Inherit from those products. Most specific first
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/product/lite_base_telephony.mk)
 
 # Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
-
-# Install/Uninstall google apps
-# $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/pico/overlay
 
