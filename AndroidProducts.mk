@@ -16,4 +16,4 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/full_pico.mk \
-    $(LOCAL_DIR)/ev.mk
+    $(LOCAL_DIR)/aokp.mk
