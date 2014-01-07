@@ -106,6 +106,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/pico/bluetooth/include
 
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/htc/pico/prebuilt/lib/egl/egl.cfg
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # WiFi related definitions
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
