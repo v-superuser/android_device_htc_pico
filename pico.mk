@@ -51,6 +51,7 @@ PRODUCT_PACKAGES += \
     gps.msm7x27a \
     librpc \
     power.msm7x27a \
+    memtrack.msm7x27a \
     com.android.future.usb.accessory \
     libnetcmdiface \
     HwaSettings
