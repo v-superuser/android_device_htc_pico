@@ -693,7 +693,7 @@ status_t AudioHardware::setParameters(const String8& keyValuePairs)
 uint32_t AudioHardware::getMvsMode(int format, int rate)
 {
     switch(format) {
-    case AUDIO_FORMAT_PCM_16_BIT:
+    case AudioSystem::PCM_16_BIT:
         if(rate == AUDIO_HW_VOIP_SAMPLERATE_8K) {
             return MVS_MODE_PCM;
         } else if(rate== AUDIO_HW_VOIP_SAMPLERATE_16K) {
@@ -702,19 +702,19 @@ uint32_t AudioHardware::getMvsMode(int format, int rate)
             return MVS_MODE_PCM;
         }
         break;
-    case AUDIO_FORMAT_AMR_NB:
+    case AudioSystem::AMR_NB:
         return MVS_MODE_AMR;
         break;
-    case AUDIO_FORMAT_AMR_WB:
+    case AudioSystem::AMR_WB:
         return MVS_MODE_AMR_WB;
         break;
-    case AUDIO_FORMAT_EVRC:
+    case AudioSystem::EVRC:
         return   MVS_MODE_IS127;
         break;
-    case AUDIO_FORMAT_EVRCB:
+    case AudioSystem::EVRCB:
         return MVS_MODE_4GV_NB;
         break;
-    case AUDIO_FORMAT_EVRCWB:
+    case AudioSystem::EVRCWB:
         return MVS_MODE_4GV_WB;
         break;
     default:
@@ -932,14 +932,14 @@ size_t AudioHardware::getInputBufferSize(uint32_t sampleRate, int format, int ch
 {
     ALOGD("AudioHardware::getInputBufferSize sampleRate %d format %d channelCount %d"
             ,sampleRate, format, channelCount);
-    if ( (format != AUDIO_FORMAT_PCM_16_BIT) &&
-         (format != AUDIO_FORMAT_AMR_NB)     &&
-         (format != AUDIO_FORMAT_AMR_WB)     &&
-         (format != AUDIO_FORMAT_EVRC)       &&
-         (format != AUDIO_FORMAT_EVRCB)      &&
-         (format != AUDIO_FORMAT_EVRCWB)     &&
-         (format != AUDIO_FORMAT_QCELP)      &&
-         (format != AUDIO_FORMAT_AAC)){
+    if ( (format != AudioSystem::PCM_16_BIT) &&
+         (format != AudioSystem::AMR_NB)     &&
+         (format != AudioSystem::AMR_WB)     &&
+         (format != AudioSystem::EVRC)       &&
+         (format != AudioSystem::EVRCB)      &&
+         (format != AudioSystem::EVRCWB)     &&
+         (format != AudioSystem::QCELP)      &&
+         (format != AudioSystem::AAC)){
         ALOGW("getInputBufferSize bad format: 0x%x", format);
         return 0;
     }
@@ -948,13 +948,13 @@ size_t AudioHardware::getInputBufferSize(uint32_t sampleRate, int format, int ch
         return 0;
     }
 
-    if(format == AUDIO_FORMAT_AMR_NB)
+    if(format == AudioSystem::AMR_NB)
        return 320*channelCount;
-    else if (format == AUDIO_FORMAT_EVRC)
+    else if (format == AudioSystem::EVRC)
        return 230*channelCount;
-    else if (format == AUDIO_FORMAT_QCELP)
+    else if (format == AudioSystem::QCELP)
        return 350*channelCount;
-    else if (format == AUDIO_FORMAT_AAC)
+    else if (format == AudioSystem::AAC)
        return 2048;
 #ifdef QCOM_VOIP_ENABLED
     else if (sampleRate == AUDIO_HW_VOIP_SAMPLERATE_8K)
@@ -1801,7 +1801,7 @@ ssize_t AudioHardware::AudioStreamInVoip::read( void* buffer, ssize_t bytes)
     }
     struct msm_audio_mvs_frame audio_mvs_frame;
     memset(&audio_mvs_frame, 0, sizeof(audio_mvs_frame));
-    if(mFormat == AUDIO_FORMAT_PCM_16_BIT) {
+    if(mFormat == AudioSystem::PCM_16_BIT) {
     audio_mvs_frame.frame_type = 0;
        while (count >= mBufferSize) {
            audio_mvs_frame.len = mBufferSize;
@@ -2304,7 +2304,7 @@ ssize_t AudioHardware::AudioStreamOutDirect::write(const void* buffer, size_t by
     }
     struct msm_audio_mvs_frame audio_mvs_frame;
     memset(&audio_mvs_frame, 0, sizeof(audio_mvs_frame));
-    if (mFormat == AUDIO_FORMAT_PCM_16_BIT) {
+    if (mFormat == AudioSystem::PCM_16_BIT) {
         audio_mvs_frame.frame_type = 0;
         while (count) {
             audio_mvs_frame.len = mBufferSize;
@@ -2483,10 +2483,10 @@ status_t AudioHardware::AudioStreamInMSM72xx::set(
 
     if ((pFormat == 0) ||
         ((*pFormat != AUDIO_HW_IN_FORMAT) &&
-         (*pFormat != AUDIO_FORMAT_AMR_NB) &&
-         (*pFormat != AUDIO_FORMAT_EVRC) &&
-         (*pFormat != AUDIO_FORMAT_QCELP) &&
-         (*pFormat != AUDIO_FORMAT_AAC)))
+         (*pFormat != AudioSystem::AMR_NB) &&
+         (*pFormat != AudioSystem::EVRC) &&
+         (*pFormat != AudioSystem::QCELP) &&
+         (*pFormat != AudioSystem::AAC)))
     {
         *pFormat = AUDIO_HW_IN_FORMAT;
         ALOGE("audio format bad value");
@@ -2576,9 +2576,9 @@ status_t AudioHardware::AudioStreamInMSM72xx::set(
     mSampleRate = config.sample_rate;
     mBufferSize = config.buffer_size;
     }
-    else if( (*pFormat == AUDIO_FORMAT_AMR_NB) ||
-             (*pFormat == AUDIO_FORMAT_EVRC) ||
-             (*pFormat == AUDIO_FORMAT_QCELP))
+    else if( (*pFormat == AudioSystem::AMR_NB) ||
+             (*pFormat == AudioSystem::EVRC) ||
+             (*pFormat == AudioSystem::QCELP))
            {
 
       // open vocie memo input device
@@ -2628,38 +2628,38 @@ status_t AudioHardware::AudioStreamInMSM72xx::set(
 
       switch (*pFormat)
       {
-        case AUDIO_FORMAT_AMR_NB:
+        case AudioSystem::AMR_NB:
         {
           ALOGI("Recording Format: AMR_NB");
           gcfg.capability = RPC_VOC_CAP_AMR; // RPC_VOC_CAP_AMR (64)
           gcfg.max_rate = RPC_VOC_AMR_RATE_1220; // Max rate (Fixed frame)
           gcfg.min_rate = RPC_VOC_AMR_RATE_1220; // Min rate (Fixed frame length)
           gcfg.frame_format = RPC_VOC_PB_AMR; // RPC_VOC_PB_AMR
-          mFormat = AUDIO_FORMAT_AMR_NB;
+          mFormat = AudioSystem::AMR_NB;
           mBufferSize = 320;
           break;
         }
 
-        case AUDIO_FORMAT_EVRC:
+        case AudioSystem::EVRC:
         {
           ALOGI("Recording Format: EVRC");
           gcfg.capability = RPC_VOC_CAP_IS127;
           gcfg.max_rate = RPC_VOC_1_RATE; // Max rate (Fixed frame)
           gcfg.min_rate = RPC_VOC_1_RATE; // Min rate (Fixed frame length)
           gcfg.frame_format = RPC_VOC_PB_NATIVE_QCP;
-          mFormat = AUDIO_FORMAT_EVRC;
+          mFormat = AudioSystem::EVRC;
           mBufferSize = 230;
           break;
         }
 
-        case AUDIO_FORMAT_QCELP:
+        case AudioSystem::QCELP:
         {
           ALOGI("Recording Format: QCELP");
           gcfg.capability = RPC_VOC_CAP_IS733; // RPC_VOC_CAP_AMR (64)
           gcfg.max_rate = RPC_VOC_1_RATE; // Max rate (Fixed frame)
           gcfg.min_rate = RPC_VOC_1_RATE; // Min rate (Fixed frame length)
           gcfg.frame_format = RPC_VOC_PB_NATIVE_QCP;
-          mFormat = AUDIO_FORMAT_QCELP;
+          mFormat = AudioSystem::QCELP;
           mBufferSize = 350;
           break;
         }
