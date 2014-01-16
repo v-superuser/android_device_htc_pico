@@ -129,5 +129,3 @@ ro.android.secure=0
 ro.fuse_sdcard=true
 persist.sys.strictmode.visual=0
 persist.sys.strictmode.disable=1
-ro.bq.gpu_to_cpu_unsupported=true
-
