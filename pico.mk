@@ -217,18 +217,6 @@ PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/bin/htc_ebdlogd:system/bin/htc_ebdlogd \
     device/htc/pico/prebuilt/bin/logcat2:system/bin/logcat2
 
-#disable preloading of EGL/GL drivers in Zygote at boot time
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.zygote.disable_gl_preload=true
-
-# Enable for debugging
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.debuggable=1 \
-    persist.service.adb.enable=1
-
-#Disable JIT cache
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.jit.codecachesize=0
 
 
 
@@ -261,9 +249,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.webview.provider=classic \
     debug.egl.hw=1 \
     debug.sf.no_hw_vsync=1 \
-    ro.zygote.disable_gl_preload=true \
-    debug.hwui.render_dirty_regions=false \
     debug.hwc.fakevsync=1
+
+#disable preloading of EGL/GL drivers in Zygote at boot time
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.zygote.disable_gl_preload=true
+
+# Enable for debugging
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1
+
+#Disable JIT cache
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.jit.codecachesize=0
+
 
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
