@@ -89,7 +89,7 @@ debug.performance.tuning=1
 # Low Power Audio
 lpa.decode=false
 audio.decoder_override_check=true
-use.non-omx.mp3.decoder=true
+use.non-omx.mp3.decoder=false
 use.non-omx.aac.decoder=true
 
 # Media
