@@ -103,7 +103,7 @@ media.stagefright.enable-qcp=true
 media.stagefright.enable-meta=false
 
 # Dalvik
-dalvik.vm.heapsize=48m
+dalvik.vm.heapsize=64m
 ro.zram.default=0
 ro.sys.fw.bg_apps_limit=7
 sys.mem.max_hidden_apps=7
