@@ -244,7 +244,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring.multiple=false \
     ro.vold.umsdirtyratio=20 \
     persist.sys.purgeable_assets=1 \
-    ro.telephony.call_ring.delay=3000 \
+    
     ro.config.low_ram=true \
     persist.webview.provider=classic \
     debug.egl.hw=1 \
@@ -259,6 +259,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.jit.codecachesize=0
 
+#two second delay is large enough?
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.call_ring.delay=2000
 
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
