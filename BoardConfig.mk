@@ -13,6 +13,8 @@
 # limitations under the License.
 #
 
+# //TODO: Fix this up, later.
+
 USE_CAMERA_STUB := true
 BOARD_VENDOR := htc
 

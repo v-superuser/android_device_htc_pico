@@ -1,3 +1,4 @@
+#TODO: fix this up, later.
 # Boot animation
 TARGET_SCREEN_HEIGHT := 320
 TARGET_SCREEN_WIDTH  := 480
