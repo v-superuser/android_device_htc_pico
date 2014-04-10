@@ -8,5 +8,6 @@ misc                  /misc      mtd         defaults                           
 recovery              /recovery  mtd         defaults                                defaults
 system                /system    yaffs2      ro,barrier=1                            wait,check
 devlog                /devlog    mtd         defaults                                defaults
-/dev/block/mmcblk0p1  /sdcard    vfat        defaults                                voldmanaged=sdcard:auto,check
-/dev/block/mmcblk0p2  /sd-ext    ext3        defaults                                voldmanaged=sdcard:auto,check
+/dev/block/mmcblk0p1  auto       auto        defaults                                voldmanaged=sdcard:auto,check
+# debug: comment below line until storage mount is fixed
+# /dev/block/mmcblk0p2  /sd-ext    ext3        defaults                                voldmanaged=sdcard:auto,check
